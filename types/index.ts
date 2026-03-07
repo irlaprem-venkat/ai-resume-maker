@@ -18,6 +18,7 @@ export interface PersonalInfo {
     location: string;
     website: string;
     summary: string;
+    template?: string;
 }
 
 export interface Experience {

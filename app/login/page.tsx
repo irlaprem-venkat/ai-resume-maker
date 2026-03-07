@@ -10,8 +10,10 @@ export default function LoginPage({ searchParams }: { searchParams: { error: str
                     <ArrowLeft className="w-4 h-4 mr-2" /> Back to home
                 </Link>
 
-                <h1 className="text-2xl font-bold mb-6">Welcome Back</h1>
-
+                <h1 className="text-2xl font-bold mb-2">Sign In or Sign Up</h1>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                    Enter your email and password to either log in or create a new account.
+                </p>
                 {searchParams?.error && (
                     <div className="mb-4 p-4 text-sm text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg">
                         {searchParams.error}

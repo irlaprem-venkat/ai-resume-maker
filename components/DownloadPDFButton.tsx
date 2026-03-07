@@ -4,6 +4,7 @@ import { Download, Loader2 } from 'lucide-react'
 import { useState } from 'react'
 
 const generatePDF = async (elementId: string, filename: string) => {
+    // @ts-ignore
     const html2pdf = (await import('html2pdf.js')).default
     const element = document.getElementById(elementId)
 

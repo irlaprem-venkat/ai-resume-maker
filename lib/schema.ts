@@ -7,7 +7,8 @@ export const resumeSchema = z.object({
         phone: z.string().optional(),
         location: z.string().optional(),
         website: z.string().optional(),
-        summary: z.string().optional()
+        summary: z.string().optional(),
+        template: z.string().optional().default('modern')
     }),
     experience: z.array(
         z.object({

@@ -57,7 +57,7 @@ export function Navbar() {
                             Log in
                         </Link>
                         <Link
-                            href="/builder"
+                            href="/resume/create"
                             className="bg-primary/20 hover:bg-primary/30 text-primary border border-primary/50 transition-all duration-300 px-4 py-2 rounded-lg text-sm font-medium hover:shadow-[0_0_15px_rgba(124,58,237,0.5)]"
                         >
                             Build Resume
@@ -103,7 +103,7 @@ export function Navbar() {
                                 Log in
                             </Link>
                             <Link
-                                href="/builder"
+                                href="/resume/create"
                                 className="px-3 py-2 text-base font-medium text-white text-center rounded-lg bg-primary hover:bg-primary/90"
                             >
                                 Build Resume

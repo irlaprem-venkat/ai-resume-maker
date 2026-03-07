@@ -1,58 +1,73 @@
-# AI Resume Maker
+# AI Resume Maker SaaS V2.0
 
-A full-stack, Next.js (App Router) based production-ready web application that helps users create professional, ATS-friendly resumes using AI.
+A production-grade Next.js SaaS application that uses AI to construct, optimize, and score professional resumes.
 
-## Features
-- **Modern UI**: Clean, responsive design built with Tailwind CSS.
-- **Authentication**: Secure email/password login using Supabase Auth.
-- **AI Optimization**: Uses Groq API (Llama3) to format and improve resume content with strong action verbs and professional phrasing.
-- **PDF Export**: Instantly download your formatted resume as a PDF.
-- **Secure Storage**: All data is securely stored in a Supabase PostgreSQL database with Row Level Security (RLS) policies.
+## Features Built
+- 🪄 **AI Content Generation**: Powered by Groq/Llama-3 for instant resume summaries and bullet points.
+- 🎯 **ATS Scoring Engine**: Analyzes your resume against job descriptions to provide a compatibility score.
+- 🎨 **Premium UI/UX**: Built with Framer Motion, TailwindCSS, and ShadCN. Dark mode glassmorphism aesthetics.
+- 📄 **6 Template Variations**: Ranging from minimalist to modern-tech designs.
+- 🔗 **Public Resumes & QR Codes**: Publish your resume to a public URL and generate an optimized QR code.
+- 💾 **Supabase Integration**: Edge-ready PostgreSQL database with secure RLS and Auth.
 
 ## Tech Stack
-- **Framework**: Next.js 14+ (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS, `lucide-react` icons
-- **Form Handling**: `react-hook-form`, `zod`
-- **Database & Auth**: Supabase (PostgreSQL)
-- **AI Integration**: Groq API
-- **PDF Generation**: `html2pdf.js`
+- **Framework**: Next.js 14 (App Router)
+- **Database/Auth**: Supabase
+- **Styling**: Tailwind CSS, ShadCN UI
+- **Animations**: Framer Motion, React Three Fiber
+- **AI Provider**: Groq API
+- **State Management**: Zustand, React Hook Form
 
-## Setup Instructions
+---
 
-### 1. Clone the repository
+## 🚀 Setting Up the Project Locally
+
+### 1. Requirements
+Ensure you have Node.js 18.17+ and Git installed.
+
+### 2. Clone and Install
 ```bash
-git clone <your-repo-url>
+git clone <repository-url>
 cd ai-resume-maker
-```
-
-### 2. Install dependencies
-```bash
 npm install
 ```
 
 ### 3. Environment Variables
-Copy the `.env.example` file to `.env.local`:
-```bash
-cp .env.example .env.local
+Create a `.env.local` file in the root directory:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+# Groq API for AI Generation
+GROQ_API_KEY=your_groq_api_key
 ```
-Fill in the following variables:
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `AI_API_KEY`
 
-### 4. Supabase Setup
-Run the SQL script provided in `schema.sql` inside your Supabase project's SQL Editor to set up the database schema and Row Level Security policies.
+### 4. Database Setup
+1. Create a project on [Supabase](https://supabase.com).
+2. Go to the SQL Editor and paste the contents of `schema.sql` located in this root directory to initialize the tables and Row Level Security (RLS) policies.
 
-### 5. Start Development Server
+### 5. Run the Application
 ```bash
 npm run dev
 ```
-Visit `http://localhost:3000` in your browser.
+Open [http://localhost:3000](http://localhost:3000)
 
-## Deployment
-This project is optimized for deployment on [Vercel](https://vercel.com/):
-1. Push your code to GitHub.
-2. Import the project into Vercel.
-3. Add your environment variables in the Vercel dashboard.
-4. Deploy!
+---
+
+## 🌐 Deployment to Vercel
+
+1. **Push to GitHub**:
+   Upload your local project to a GitHub repository.
+2. **Import to Vercel**:
+   Log into [Vercel](https://vercel.com/) and click **Add New** -> **Project**. Select your newly pushed GitHub repository.
+3. **Configure Environment Variables**:
+   In the Vercel deployment settings, add all the variables from your `.env.local` file.
+4. **Deploy**:
+   Click Deploy. Vercel automatically detects Next.js configurations (`next build`).
+   Your application will be live globally on Vercel's Edge Network in minutes!
+
+## Production Best Practices Implemented
+- **Edge Deployment**: AI inference endpoints (`/api/ai/enhance`, `/api/ai/ats-score`) are marked explicitly as `export const runtime = 'edge'` for minimal latency.
+- **Strict RLS**: All database interactions are protected by Supabase RLS directly attached to `auth.uid()`, strictly isolating user data.
+- **Client/Server Partitions**: Leveraging React Server Components for dashboards, and limiting heavy stateful components to `app/(editor)` bundles only.

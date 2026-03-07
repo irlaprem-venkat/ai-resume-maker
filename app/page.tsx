@@ -80,7 +80,7 @@ export default function LandingPage() {
                         className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
                     >
                         <Link
-                            href="/builder"
+                            href="/resume/create"
                             className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(124,58,237,0.4)]"
                         >
                             Build Your AI Resume <ArrowRight className="w-5 h-5" />
@@ -130,7 +130,7 @@ export default function LandingPage() {
                         <h2 className="text-4xl md:text-6xl font-bold mb-6">Ready to accelerate your career?</h2>
                         <p className="text-xl text-muted-foreground mb-10">Join thousands of professionals who have already landed their dream jobs using our platform.</p>
                         <Link
-                            href="/builder"
+                            href="/resume/create"
                             className="inline-flex bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg items-center gap-2 transition-transform hover:scale-105"
                         >
                             Get Started for Free <ArrowRight className="w-5 h-5" />

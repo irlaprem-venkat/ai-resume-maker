@@ -1,11 +1,12 @@
 import { Resume } from '@/types'
 
-export default function DeveloperTemplate({ resume, aiContent }: { resume: Resume, aiContent: any }) {
-    const { personal_info } = resume
-    const experience = aiContent?.experience || resume.experience
-    const education = aiContent?.education || resume.education
-    const summary = aiContent?.summary || personal_info?.summary
-    const skills = aiContent?.skills || resume.skills
+export default function DeveloperTemplate({ resume, aiContent }: { resume: any, aiContent: any }) {
+    const info = resume.personal_info || resume.personalInfo || resume || {};
+    const experience = aiContent?.experience || resume.experience || [];
+    const education = aiContent?.education || resume.education || [];
+    const summary = aiContent?.summary || info.summary;
+    const skills = aiContent?.skills || resume.skills || [];
+    const personal_info = info;
 
     return (
         <div className="bg-[#0D1117] text-[#C9D1D9] w-full min-h-[297mm] h-full p-10 font-mono text-sm leading-relaxed border-t-4 border-[#58A6FF]">

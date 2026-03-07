@@ -25,7 +25,7 @@ export default async function DashboardPage() {
                     <p className="text-muted-foreground">Manage and update your AI-generated resumes.</p>
                 </div>
                 <Link
-                    href="/builder"
+                    href="/resume/create"
                     className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(124,58,237,0.3)] hover:shadow-[0_0_25px_rgba(124,58,237,0.5)]"
                 >
                     <Plus className="w-5 h-5" /> Create New
@@ -42,7 +42,7 @@ export default async function DashboardPage() {
                         You haven't created any resumes yet. Start building your first AI-powered resume to land your dream job.
                     </p>
                     <Link
-                        href="/builder"
+                        href="/resume/create"
                         className="bg-white text-black hover:bg-gray-100 px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all"
                     >
                         <Plus className="w-5 h-5" /> Create Your First Resume
@@ -66,7 +66,7 @@ export default async function DashboardPage() {
                             <p className="text-sm text-muted-foreground mb-6">Template: {resume.template_name}</p>
 
                             <div className="flex items-center gap-2 pt-4 border-t border-white/10">
-                                <Link href={`/builder/${resume.id}`} className="flex-1 bg-white/5 hover:bg-white/10 text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+                                <Link href={`/resume/${resume.id}`} className="flex-1 bg-white/5 hover:bg-white/10 text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-colors">
                                     <Edit2 className="w-4 h-4" /> Edit
                                 </Link>
                                 <button className="bg-white/5 hover:bg-white/10 text-white px-3 py-2 rounded-lg transition-colors">

@@ -1,11 +1,13 @@
 import { Resume } from '@/types'
 
-export default function ModernTemplate({ resume, aiContent }: { resume: Resume, aiContent: any }) {
-    const { personal_info } = resume
-    const experience = aiContent?.experience || resume.experience
-    const education = aiContent?.education || resume.education
-    const summary = aiContent?.summary || personal_info?.summary
-    const skills = aiContent?.skills || resume.skills
+export default function ModernTemplate({ resume, aiContent }: { resume: any, aiContent: any }) {
+    // Highly resilient field mapping to support both AI and raw data
+    const info = resume.personal_info || resume.personalInfo || resume || {};
+    const experience = aiContent?.experience || resume.experience || [];
+    const education = aiContent?.education || resume.education || [];
+    const summary = aiContent?.summary || info.summary;
+    const skills = aiContent?.skills || resume.skills || [];
+    const personal_info = info;
 
     return (
         <div className="bg-white text-slate-900 w-full min-h-[297mm] h-full p-8 font-sans">
@@ -28,7 +30,13 @@ export default function ModernTemplate({ resume, aiContent }: { resume: Resume, 
                     {personal_info?.website && (
                         <>
                             <span className="text-indigo-400">•</span>
-                            <a href={personal_info.website} className="text-indigo-600 hover:underline">{personal_info.website}</a>
+                            <a href={personal_info.website} className="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                        </>
+                    )}
+                    {personal_info?.linkedin && (
+                        <>
+                            <span className="text-indigo-400">•</span>
+                            <a href={personal_info.linkedin} className="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                         </>
                     )}
                 </div>

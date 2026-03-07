@@ -13,11 +13,26 @@ export default async function ResumePage({ params }: { params: { id: string } })
         redirect('/login')
     }
 
-    const { data: resume, error } = await supabase
+    const { data: resumeData, error } = await supabase
         .from('resumes')
-        .select('*')
+        .select(`
+            *,
+            resume_sections (
+                content
+            )
+        `)
         .eq('id', params.id)
         .single()
+
+    // Merge the content into a single object that ResumePreview expects
+    // Supabase returns related tables as arrays, even for 1-to-1 relations
+    const sections = (resumeData as any).resume_sections;
+    const content = Array.isArray(sections) ? sections[0]?.content : (sections?.content || {});
+
+    const resume = resumeData ? {
+        ...resumeData,
+        ...content
+    } : null;
 
     if (error || !resume || resume.user_id !== user.id) {
         return (

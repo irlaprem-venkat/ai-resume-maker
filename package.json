@@ -11,8 +11,8 @@
   "dependencies": {
     "@base-ui/react": "^1.2.0",
     "@hookform/resolvers": "^3.9.0",
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
+    "@react-three/drei": "^9.121.5",
+    "@react-three/fiber": "^8.17.10",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.45.4",
     "@types/three": "^0.183.1",
@@ -23,6 +23,7 @@
     "html2pdf.js": "^0.10.2",
     "lucide-react": "^0.447.0",
     "next": "14.2.14",
+    "qrcode.react": "^4.2.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",

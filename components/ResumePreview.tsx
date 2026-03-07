@@ -8,27 +8,33 @@ const DeveloperTemplate = dynamic(() => import('./templates/DeveloperTemplate'))
 const ExecutiveTemplate = dynamic(() => import('./templates/ExecutiveTemplate'))
 const MinimalistTemplate = dynamic(() => import('./templates/MinimalistTemplate'))
 
-export default function ResumePreview({ resume }: { resume: Resume }) {
-    let aiContent = null
-    try {
-        if (resume.ai_generated_content) {
-            aiContent = JSON.parse(resume.ai_generated_content)
-        }
-    } catch (e) {
-        console.error("Failed to parse AI content")
-    }
+export default function ResumePreview({ resume }: { resume: any }) {
+    // Standardize mapping: The API saves personalInfo (camelCase) to resume_sections
+    // but templates expect personal_info (snake_case).
+    const personal_info = resume.personal_info || resume.personalInfo || {};
 
-    const templateId = resume.personal_info?.template || 'modern'
+    // The rest of the AI content (summary, experience, education, skills) 
+    // is also merged into the resume object.
+    const aiContent = resume;
+
+    // Create a standardized resume object for the templates
+    const standardizedResume = {
+        ...resume,
+        personal_info
+    };
+
+    const templateId = resume.template_id || 'modern'
 
     const renderTemplate = () => {
+        const props = { resume: standardizedResume, aiContent };
         switch (templateId) {
-            case 'modern': return <ModernTemplate resume={resume} aiContent={aiContent} />;
-            case 'professional': return <ProfessionalTemplate resume={resume} aiContent={aiContent} />;
-            case 'creative': return <CreativeTemplate resume={resume} aiContent={aiContent} />;
-            case 'developer': return <DeveloperTemplate resume={resume} aiContent={aiContent} />;
-            case 'executive': return <ExecutiveTemplate resume={resume} aiContent={aiContent} />;
-            case 'minimalist': return <MinimalistTemplate resume={resume} aiContent={aiContent} />;
-            default: return <ModernTemplate resume={resume} aiContent={aiContent} />;
+            case 'modern': return <ModernTemplate {...props} />;
+            case 'professional': return <ProfessionalTemplate {...props} />;
+            case 'creative': return <CreativeTemplate {...props} />;
+            case 'developer': return <DeveloperTemplate {...props} />;
+            case 'executive': return <ExecutiveTemplate {...props} />;
+            case 'minimalist': return <MinimalistTemplate {...props} />;
+            default: return <ModernTemplate {...props} />;
         }
     }
 

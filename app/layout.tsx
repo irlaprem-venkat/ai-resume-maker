@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
     title: "AI Resume Maker",
@@ -18,8 +18,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={cn("dark", "font-sans", geist.variable)}>
-            <body className={`${geist.variable} font-sans min-h-screen bg-background text-foreground antialiased flex flex-col`}>
+        <html lang="en" className={cn("dark", "font-sans", inter.variable)}>
+            <body className={`${inter.variable} font-sans min-h-screen bg-background text-foreground antialiased flex flex-col`}>
                 <Navbar />
                 <main className="flex-1 flex flex-col pt-20">
                     {children}
